@@ -1,0 +1,52 @@
+<div class="container">
+  <h1><strong><%= @movielist.name %></strong> by <%= @movielist.admin.first_name %></h1>
+
+  <h3>Members:</h3>
+    <ul>
+      <% @movielist.users.each do |user| %>
+        <li>
+          <div class="imagebox" style="background-image:url(<%= user.picture %>); height: 100px; width: 100px; background-position:center center; background-size:cover; border-radius:50%"></div>
+
+          <%= user.first_name %>
+        </li>
+      <% end %>
+    </ul>
+
+  <hr>
+  <p>Invite a new member</p>
+
+  <%= form_tag(search_users_path(@movielist.id, :tab => "drive"), method: 'get') do %>
+        <%= text_field_tag(:search, params[:search]) %>
+
+        <%= submit_tag("Search", name: nil) %>
+  <% end %>
+  <hr>
+
+  <h3>Movies</h3>
+
+  <% if @movielist.movies %>
+    <ul>
+      <% @movielist.movies.each do |movie| %>
+        <li>
+          <div class="imagebox" style="background-image:url(<%= movie.image %>); height: 100px; width: 100px; background-position:center center; background-size:cover;"></div>
+          <h4><strong><%= movie.name %></strong> - <%= movie.year %> </h4>
+          <p><%= movie.genre %></p>
+
+
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+      <p>No movies in this list</p>
+  <% end %>
+
+
+
+
+
+  <%= link_to new_movie_list_movie_path(@movielist), :class => "btn btn-primary" do %>
+    Add Movie to list
+  <% end %>
+</div>
+
+

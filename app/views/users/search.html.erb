@@ -1,0 +1,10 @@
+<% @users.each do |user| %>
+<%= user.first_name %> <%= user.last_name %>
+<%= link_to new_movie_list_movie_path(@movielist) do %>
+    <p>Add user to <%= @movielist.name %> list</p>
+
+  <% end %>
+<% end %>
+
+
+

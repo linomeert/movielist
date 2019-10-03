@@ -1,0 +1,14 @@
+<% if @users.empty? %>
+  <p>No users found. Try again!</p>
+<% end %>
+
+<% @users.each do |user| %>
+<%= user.first_name %> <%= user.last_name %>
+<%= link_to users_invite_path(user_id: user.id, movielist_id: @movielist.id) do %>
+    <p>Add user to <%= @movielist.name %> list</p>
+
+  <% end %>
+<% end %>
+
+
+

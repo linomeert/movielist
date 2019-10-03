@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Add a new movie</h1>
+
+  <%= simple_form_for [@movielist, @movie], html: { id: :search_movie, autocomplete: "off" } do |f| %>
+    <%= f.input :name %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+  <% end %>
+
+  <ul id="results"></ul>
+</div>
+

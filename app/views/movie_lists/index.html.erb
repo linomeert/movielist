@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Hello <%= current_user.first_name %></h1>
+  <h2>Your movie lists</h2>
+
+  <% if @movielists %>
+    <ul>
+      <% @movielists.each do |movielist| %>
+        <li>
+          <%= link_to movie_list_path(movielist) do %>
+            <strong><%= movielist.name %> <span>By <%= movielist.admin.first_name %></strong>
+          <% end %>
+          <% if !movielist.movies.empty? %>
+            <div class="movies">
+              <% movielist.movies.order('created_at DESC').take(5).each do |movie| %>
+                <%= movie.name %>,
+              <% end %> ...
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+      <p>No movielists</p>
+  <% end %>
+
+
+
+  <%= link_to new_movie_list_path(current_user), :class => "btn btn-primary" do %>
+    New Movie List
+  <% end %>
+</div>
